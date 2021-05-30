@@ -1,0 +1,13 @@
+version: '3'
+services:
+  octoprint:
+    image: octoprint/octoprint:python3
+    container_name: octoprint
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./:/octoprint_dropbox_timelapse
+      - octoprint:/home/octoprint
+    command: bash -c "python /octoprint_dropbox_timelapse/setup-dev-printer.py && pip install -U -e /octoprint_dropbox_timelapse && octoprint serve"
+volumes:
+  octoprint:
